@@ -9,7 +9,6 @@ package ketnoiSQL;
  *
  * @author ASUS
  */
-
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -23,18 +22,23 @@ import java.sql.Statement;
 import java.util.logging.Level;
 
 import java.util.logging.Logger;
-public class ketnoiSQL {
-      public static Connection getConnection() {
 
-        String url = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+public class ketnoiSQL {
+
+    public static Connection getConnection() {
+        String url = "org.sqlite.JDBC";
         Connection con = null;
-        final String dbUrl = "jdbc:sqlserver://LAPTOP-HU4V9EL6:1433;databaseName=quanlyBanVeMB";
+        final String dbUrl = "jdbc:sqlite:databaseVMB.db";
+
+        /* String url = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        Connection con = null;
+        final String dbUrl = "jdbc:sqlite:databaseVMB.db";
         String user = "sa";
-        String pass = "1234";
+        String pass = "1234";*/
         try {
 
             Class.forName(url);
-            return DriverManager.getConnection(dbUrl,user,pass);
+            return DriverManager.getConnection(dbUrl);
 
         } catch (ClassNotFoundException ex) {
 
@@ -47,7 +51,6 @@ public class ketnoiSQL {
         }
         return null;
     }
-
 
     public void Close() throws Exception {
         Connection con = getConnection();
